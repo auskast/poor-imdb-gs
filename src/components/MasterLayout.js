@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component, PropTypes } from "react";
 import Helmet from "react-helmet";
+import { Grid } from "react-bootstrap";
 import config from "../config/application";
 
 export default class MasterLayout extends Component {
@@ -10,10 +11,10 @@ export default class MasterLayout extends Component {
 
   render () {
     return (
-      <div>
-        <Helmet {...config.head}/>
+      <Grid>
+        <Helmet {...config.head} />
         {this.props.children}
-      </div>
+      </Grid>
     );
   }
 }

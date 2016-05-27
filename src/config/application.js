@@ -5,7 +5,8 @@ const headContent = {
   title: "Poor Man's IMDB",
   titleTemplate: "%s | Poor Man's IMDB",
   meta: [
-    {name: "description", content: "Poor Man's IMDB"}
+    { name: "description", content: "Poor Man's IMDB" },
+    { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" }
   ]
 };
 

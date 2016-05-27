@@ -1,0 +1,2 @@
+instrumentation:
+  excludes: ['components/demo/**', 'containers/DemoApp.js', '**/index.js', 'config/**']

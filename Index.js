@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import Helmet from "react-helmet";
 import "assets/css/normalize.css";
+import "assets/css/main.scss";
 
 /**
  * The index html will be generated from this file. You can customize things as

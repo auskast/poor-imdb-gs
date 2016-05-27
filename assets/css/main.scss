@@ -1,0 +1,25 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
+@import "./_variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "./bootstrap.theme";
+
+table {
+  border-collapse: collapse;
+
+  tr {
+    background-color: #fbfbfb;
+    border: 1px solid #fff;
+  }
+
+  &.table-striped {
+    tr:nth-child(odd) {
+      background-color: #f6f6f5;
+    }
+  }
+
+  td {
+    padding: 6px;
+  }
+}
