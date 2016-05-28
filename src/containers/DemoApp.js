@@ -15,28 +15,29 @@ export default class DemoApp extends Component {
 
     if (children) {
       return (
-        <Grid fluid>
-          <Row>
-            <Link to="/demos">&laquo; Back to Demos</Link>
-            <hr />
-          </Row>
-          {children}
-        </Grid>
+        <article>
+          <Grid fluid>
+            <Row>
+              <Link to="/demos">&laquo; Back to Demos</Link>
+              <hr />
+            </Row>
+            {children}
+          </Grid>
+        </article>
       );
     }
 
     return (
-      <Grid fluid>
+      <article>
         <Helmet title="Component Demos" />
 
-        <Row>
-          <PageHeader>Component Demos</PageHeader>
+        <PageHeader>Component Demos</PageHeader>
 
-          <Panel header="Components" bsStyle="primary">
-            <LinkContainer to="demos/movie"><ListGroupItem>Movie</ListGroupItem></LinkContainer>
-          </Panel>
-        </Row>
-      </Grid>
+        <Panel header="Components" bsStyle="primary">
+          <LinkContainer to="demos/movie"><ListGroupItem>Movie</ListGroupItem></LinkContainer>
+          <LinkContainer to="demos/actor"><ListGroupItem>Actor</ListGroupItem></LinkContainer>
+        </Panel>
+      </article>
     );
   }
 }

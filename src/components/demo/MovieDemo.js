@@ -5,7 +5,7 @@ import { Panel, Row } from "react-bootstrap";
 
 import Movie from "../Movie";
 
-import movie from "../../../test/fixtures/movie";
+import movies from "../../../test/fixtures/movies";
 
 export default class MovieDemo extends Component {
   render () {
@@ -20,7 +20,7 @@ export default class MovieDemo extends Component {
         </p>
 
         <Panel header="Movie" bsStyle="primary">
-          <Movie {...movie} />
+          <Movie {...movies[ 0 ]} />
         </Panel>
       </Row>
     );

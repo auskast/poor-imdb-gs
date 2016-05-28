@@ -4,11 +4,11 @@ import { shallow } from "enzyme";
 import { Link } from "react-router";
 import DividedList from "components/DividedList";
 
-import movie from "../fixtures/movie";
+import movies from "../fixtures/movies";
 
 describe("components/Movie", () => {
   function getSubject (props) {
-    return <Movie {...Object.assign({}, movie, props)} />;
+    return <Movie {...Object.assign({}, movies[ 0 ], props)} />;
   }
 
   it("renders without an issue", () => {
@@ -47,13 +47,13 @@ describe("components/Movie", () => {
       const subject = getSubject();
       const wrapper = shallow(subject);
       const rows = wrapper.find("[data-qa='Movie-cast']").find("table").find("tr");
-      expect(rows).to.have.length(movie.cast.length);
+      expect(rows).to.have.length(movies[ 0 ].cast.length);
     });
 
-    it("renders cast member name as link when url given", () => {
+    it("renders cast member name as link", () => {
       const subject = getSubject({
         cast: [
-          { actor: "Test Actor", roles: [ "Test Role" ], url: "test-url" }
+          { id: 1, name: "Test Actor", roles: [ "Test Role" ] }
         ]
       });
       const wrapper = shallow(subject);
@@ -61,22 +61,8 @@ describe("components/Movie", () => {
       expect(cols).to.have.length(3);
       const name = cols.at(0).childAt(0);
       expect(name.is(Link)).to.equal(true);
-      expect(name.prop("to")).to.equal("test-url");
+      expect(name.prop("to")).to.equal("actors/1");
       expect(name.prop("children")).to.equal("Test Actor");
-    });
-
-    it("renders cast member name as text when no url given", () => {
-      const subject = getSubject({
-        cast: [
-          { actor: "Test Actor", roles: [ "Test Role" ] }
-        ]
-      });
-      const wrapper = shallow(subject);
-      const cols = wrapper.find("[data-qa='Movie-cast']").find("table").find("tr").find("td");
-      expect(cols).to.have.length(3);
-      const name = cols.at(0).childAt(0);
-      expect(name.is(Link)).to.equal(false);
-      expect(name.text()).to.equal("Test Actor");
     });
   });
 });

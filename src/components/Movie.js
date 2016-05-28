@@ -73,11 +73,8 @@ export default class Movie extends Component {
     const { cast } = this.props;
 
     const castMembers = cast.map((castMember, index) => {
+      const name = <Link to={`actors/${castMember.id}`}>{castMember.name}</Link>;
       const roles = <DividedList items={castMember.roles} separator=" / " />;
-
-      const name = castMember.url ?
-        <Link to={castMember.url}>{castMember.actor}</Link> :
-        <span>{castMember.actor}</span>;
 
       return (
         <tr key={index}>
