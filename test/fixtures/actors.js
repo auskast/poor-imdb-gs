@@ -55,6 +55,63 @@ const actors = [
         roles: [ "Lucas Lee" ]
       },
     ]
+  },
+  {
+    id: 11,
+    name: "Paul Rudd",
+    fullName: "Paul Stephen Rudd",
+    birthDate: "1969-04-06",
+    birthPlace: "Passaic, New Jersey, USA",
+    filmography: [
+      {
+        id: 1,
+        title: "Captain America: Civil War",
+        year: 2016,
+        roles: [ "Scott Lang", "Ant-Man" ]
+      },
+      {
+        id: 2,
+        title: "Ant-Man",
+        year: 2015,
+        roles: [ "Scott Lang", "Ant-Man" ]
+      },
+      {
+        id: 9,
+        title: "Anchorman 2: The Legend Continues",
+        year: 2013,
+        roles: [ "Brian Fantana" ]
+      },
+      {
+        id: 10,
+        title: "This Is the End",
+        year: 2013,
+        roles: [ "Paul Rudd" ]
+      },
+      {
+        id: 9,
+        title: "Anchorman 2: The Legend Continues",
+        year: 2013,
+        roles: [ "Brian Fantana" ]
+      },
+      {
+        id: 10,
+        title: "Wanderlust",
+        year: 2012,
+        roles: [ "George Gergenblatt" ]
+      },
+      {
+        id: 11,
+        title: "Role Models",
+        year: 2008,
+        roles: [ "Danny" ]
+      },
+      {
+        id: 12,
+        title: "Forgetting Sarah Marshall",
+        year: 2008,
+        roles: [ "Chuck" ]
+      },
+    ]
   }
 ];
 

@@ -62,7 +62,7 @@ const movies = [
       {
         id: 11,
         name: "Paul Rudd",
-        roles: [ "Scott Lang", "Ant Man" ]
+        roles: [ "Scott Lang", "Ant-Man" ]
       },
       {
         id: 12,
@@ -83,6 +83,88 @@ const movies = [
         id: 15,
         name: "Frank Grillo",
         roles: [ "Brock Rumlow", "Crossbones" ]
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Ant-Man",
+    year: 2015,
+    description: "Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help his mentor, Dr. Hank Pym, plan and pull off a heist that will save the world.",
+    directors: [ "Peyton Reed" ],
+    genres: [ "Action", "Adventure", "Comedy" ],
+    rating: "PG-13",
+    runtime: 117,
+    cast: [
+      {
+        id: 11,
+        name: "Paul Rudd",
+        roles: [ "Scott Lang", "Ant Man" ]
+      },
+      {
+        id: 16,
+        name: "Michael Douglas",
+        roles: [ "Dr. Hank Pym" ]
+      },
+      {
+        id: 17,
+        name: "Evangeline Lilly",
+        roles: [ "Hope van Dyne" ]
+      },
+      {
+        id: 18,
+        name: "Corey Stoll",
+        roles: [ "Darren Cross", "Yellowjacket" ]
+      },
+      {
+        id: 19,
+        name: "Bobby Canavale",
+        roles: [ "Paxton" ]
+      },
+      {
+        id: 5,
+        name: "Anthony Mackie",
+        roles: [ "Sam Wilson", "Falcon" ]
+      },
+      {
+        id: 20,
+        name: "Judy Greer",
+        roles: [ "Maggie Lang" ]
+      },
+      {
+        id: 21,
+        name: "Abby Ryder Fortson",
+        roles: [ "Cassie Lang" ]
+      },
+      {
+        id: 22,
+        name: "Michael Peña",
+        roles: [ "Luis" ]
+      },
+      {
+        id: 23,
+        name: "David Dastmalchian",
+        roles: [ "Kurt" ]
+      },
+      {
+        id: 24,
+        name: "T.I.",
+        roles: [ "Dave" ]
+      },
+      {
+        id: 25,
+        name: "Hayley Atwell",
+        roles: [ "Peggy Carter" ]
+      },
+      {
+        id: 26,
+        name: "Wood Harris",
+        roles: [ "Gale" ]
+      },
+      {
+        id: 27,
+        name: "John Slattery",
+        roles: [ "Howard Stark" ]
       },
     ],
   }
