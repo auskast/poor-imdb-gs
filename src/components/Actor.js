@@ -51,7 +51,7 @@ export default class Actor extends Component {
     const { filmography } = this.props;
 
     const films = filmography.map((film, index) => {
-      const title = <Link to={`movies/${film.id}`}><strong>{film.title}</strong></Link>;
+      const title = <Link to={`/movies/${film.id}`}><strong>{film.title}</strong></Link>;
       const roles = <DividedList items={film.roles} separator=" / " />;
 
       return (

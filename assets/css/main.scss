@@ -5,6 +5,11 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "./bootstrap.theme";
 
+article {
+  margin-top: 50px;
+  padding-top: 10px;
+}
+
 table {
   border-collapse: collapse;
 

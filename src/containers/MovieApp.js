@@ -4,12 +4,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 
-import Home from "../components/Home";
+import Movie from "../components/Movie";
 
-import _movies from "../../test/fixtures/movies";
-import _actors from "../../test/fixtures/actors";
+import { getMovie } from "../../test/fixtures/movies";
 
-export class HomeApp extends Component {
+export class MovieApp extends Component {
   /**
    * Called by ReactRouter before loading the container. Called prior to the
    * React life cycle so doesn't have access to component's props or state.
@@ -28,28 +27,33 @@ export class HomeApp extends Component {
   }
 
   static propTypes = {
-    actors: PropTypes.array.isRequired,
-    movies: PropTypes.array.isRequired,
+    movie: PropTypes.shape({
+      title: PropTypes.string.isRequired
+    })
   };
 
   render () {
-    const { actors, movies } = this.props;
+    const { movie } = this.props;
+
+    if (!movie) {
+      return (
+        <article>
+          Sorry, that movie doesn't exist!
+        </article>
+      );
+    }
 
     return (
       <article>
-        <Helmet title="Home" />
+        <Helmet title={movie.title} />
 
-        <Home movies={movies} actors={actors} />
+        <Movie {...movie} />
       </article>
     );
   }
 }
 
 export default connect(
-  (/* state */) => ({
-    actors: _actors,
-    movies: _movies
-  }),
+  (state, props) => ({ movie: getMovie(Number(props.params.id)) }),
   (dispatch) => bindActionCreators({ /** _INSERT_ACTION_CREATORS_ **/ }, dispatch)
-)(HomeApp);
-
+)(MovieApp);

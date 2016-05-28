@@ -14,9 +14,9 @@ function formatRuntime (runtime) {
 export default class Movie extends Component {
   static propTypes = {
     cast: PropTypes.arrayOf(PropTypes.shape({
-      actor: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
       roles: PropTypes.arrayOf(PropTypes.string).isRequired,
-      url: PropTypes.string,
     })).isRequired,
     description: PropTypes.string.isRequired,
     directors: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -73,7 +73,7 @@ export default class Movie extends Component {
     const { cast } = this.props;
 
     const castMembers = cast.map((castMember, index) => {
-      const name = <Link to={`actors/${castMember.id}`}>{castMember.name}</Link>;
+      const name = <Link to={`/actors/${castMember.id}`}>{castMember.name}</Link>;
       const roles = <DividedList items={castMember.roles} separator=" / " />;
 
       return (

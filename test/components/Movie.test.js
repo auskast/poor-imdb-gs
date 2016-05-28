@@ -59,9 +59,8 @@ describe("components/Movie", () => {
       const wrapper = shallow(subject);
       const cols = wrapper.find("[data-qa='Movie-cast']").find("table").find("tr").find("td");
       expect(cols).to.have.length(3);
-      const name = cols.at(0).childAt(0);
-      expect(name.is(Link)).to.equal(true);
-      expect(name.prop("to")).to.equal("actors/1");
+      const name = cols.at(0).find(Link);
+      expect(name.prop("to")).to.equal("/actors/1");
       expect(name.prop("children")).to.equal("Test Actor");
     });
   });

@@ -5,6 +5,8 @@ import { ROUTE_NAME_404_NOT_FOUND } from "gluestick-shared";
 
 import MasterLayout from "../components/MasterLayout";
 import HomeApp from "../containers/HomeApp";
+import MovieApp from "../containers/MovieApp";
+import ActorApp from "../containers/ActorApp";
 import NoMatchApp from "../containers/NoMatchApp";
 
 // Demos
@@ -16,6 +18,9 @@ export default function routes (/*store:Object*/) {
   return (
     <Route component={MasterLayout} path="/">
       <IndexRoute component={HomeApp} />
+
+      <Route path="movies/:id" component={MovieApp} />
+      <Route path="actors/:id" component={ActorApp} />
 
       <Route path="demos" component={DemoApp}>
         <Route path="movie" component={MovieDemo} />
