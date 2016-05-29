@@ -2,6 +2,7 @@ Poor Man's IMDB
 ===============
 
 [gluestick]: https://github.com/TrueCar/gluestick
+[flow]: http://flowtype.org/
 
 This is a demo app similar to IMDB built with [gluestick] run in node 6.
     
@@ -23,3 +24,5 @@ tests with the command
 Run eslint on project files with the command
 
     npm run lint
+    
+Optionally, you can install [flow] and run that as well
