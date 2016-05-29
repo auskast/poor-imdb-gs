@@ -74,7 +74,7 @@ export default class Movie extends Component {
       <div data-qa="Movie-description" style={styles.body}>
         <p>{description}</p>
         <p style={styles.crew}>
-          <strong>Directors:</strong> {directors.join(", ")}
+          <strong>Director{directors.length > 1 ? "s" : ""}:</strong> {directors.join(", ")}
         </p>
       </div>
     );
