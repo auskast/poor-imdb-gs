@@ -2,6 +2,10 @@
   "name": "poor-imdb-gs",
   "version": "1.0.0",
   "description": "An IMDB-inspired sample app using gluestick",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/auskast/poor-imdb-gs.git"
+  },
   "scripts": {
     "start": "gluestick start",
     "test": "echo \"Error: no test specified\" && exit 1",
