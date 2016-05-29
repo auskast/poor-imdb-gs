@@ -3,13 +3,16 @@ import { shallow } from "enzyme";
 import { createStore } from "redux";
 
 import Actor from "components/Actor";
+import {
+  ACTOR_LOAD_ACTOR
+} from "actions/actorActions";
 
-import actors, { getActor } from "../fixtures/actors";
+import actors from "../fixtures/actors";
 
 describe("containers/ActorApp", () => {
   function getSubject (props) {
     return <ActorApp {...Object.assign({}, {
-      actor: actors[0]
+      actor: actors[ 0 ]
     }, props)} />;
   }
 
@@ -33,18 +36,38 @@ describe("containers/ActorApp", () => {
     const wrapper = shallow(subject);
     const actor = wrapper.find(Actor);
     expect(actor).to.have.length(0);
-    expect(wrapper.text()).to.equal("Sorry, that actor doesn't exist!");
+    expect(wrapper.find(".error").text()).to.equal("Sorry, that actor doesn't exist!");
+  });
+
+  it("dispatches call to the loadActor action before routing", () => {
+    const store = {
+      dispatch: (action) => {
+        return action;
+      }
+    };
+    const params = {
+      id: 1
+    };
+
+    const action = ActorApp.gsBeforeRoute(store, params);
+    expect(action.type).to.equal(ACTOR_LOAD_ACTOR);
   });
 
   describe("mapStateToProps", () => {
     const store = createStore(() => {
-      return {};
+      return {
+        actors: {
+          actors: {
+            1: { id: 1, name: "Test Actor" }
+          }
+        }
+      };
     });
 
-    it("loads actor", () => {
+    it("derives prop values", () => {
       const subject = <ConnectedComponent store={store} params={{id: 1}} />;
       const wrapper = shallow(subject);
-      expect(wrapper.prop("actor")).to.equal(getActor(1));
+      expect(wrapper.prop("actor")).to.deep.equal({ id: 1, name: "Test Actor" });
     });
   });
 

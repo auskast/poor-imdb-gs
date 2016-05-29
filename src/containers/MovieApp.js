@@ -3,42 +3,45 @@ import React, { Component, PropTypes } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
+import { Alert } from "react-bootstrap";
 
 import Movie from "../components/Movie";
 
-import { getMovie } from "../../test/fixtures/movies";
+import { loadMovie, rateMovie } from "../actions/movieActions";
 
 export class MovieApp extends Component {
-  /**
-   * Called by ReactRouter before loading the container. Called prior to the
-   * React life cycle so doesn't have access to component's props or state.
-   *
-   * @param {Object} store redux store object
-   * @param {Object} renderProps render properties returned from ReactRouter
-   * @param {Object} query location data
-   * @param {Object} serverProps server specific properties
-   * @param {Boolean} serverProps.isServer method running on server or not
-   * @param {Request} [serverProps.request] express request if isServer
-   *
-   * @return {(Promise|undefined)} If this method returns a promise, the router
-   * will wait for the promise to resolve before the container is loaded.
-   */
-  static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {
+  static gsBeforeRoute ({ dispatch }, renderProps/*, query, serverProps */) {
+    return dispatch(loadMovie(Number(renderProps.id)));
   }
 
   static propTypes = {
+    error: PropTypes.string,
     movie: PropTypes.shape({
+      id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired
-    })
+    }),
+
+    rateMovie: PropTypes.func,
   };
 
+  constructor (props:Object) {
+    super(props);
+
+    (this:any).handleRate = this.handleRate.bind(this);
+  }
+
   render () {
-    const { movie } = this.props;
+    const { error, movie } = this.props;
 
     if (!movie) {
       return (
         <article>
-          Sorry, that movie doesn't exist!
+          <Alert bsStyle="danger">
+            <strong>Error Message:</strong> {error}
+          </Alert>
+          <span className="error">
+            Sorry, that movie doesn't exist!
+          </span>
         </article>
       );
     }
@@ -47,13 +50,23 @@ export class MovieApp extends Component {
       <article>
         <Helmet title={movie.title} />
 
-        <Movie {...movie} />
+        <Movie {...movie} onRate={this.handleRate} />
       </article>
     );
+  }
+
+  handleRate (rating:number) {
+    const { movie: { id } } = this.props;
+    const { rateMovie } = this.props;
+
+    rateMovie && rateMovie(id, rating);
   }
 }
 
 export default connect(
-  (state, props) => ({ movie: getMovie(Number(props.params.id)) }),
-  (dispatch) => bindActionCreators({ /** _INSERT_ACTION_CREATORS_ **/ }, dispatch)
+  (state, props) => ({
+    movie: state.movies.movies[ props.params.id ],
+    error: state.movies.error
+  }),
+  (dispatch) => bindActionCreators({ rateMovie }, dispatch)
 )(MovieApp);

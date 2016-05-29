@@ -8,6 +8,7 @@ const movies = [
     genres: [ "Action", "Adventure", "Sci-Fi" ],
     rating: "PG-13",
     runtime: 147,
+    userRatings: [ 5, 8, 9 ],
     cast: [
       {
         id: 1,

@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 
 import DividedList from "./DividedList";
+import UserRating from "./UserRating";
 
 function formatRuntime (runtime) {
   const hours = Math.floor(runtime / 60);
@@ -24,7 +25,10 @@ export default class Movie extends Component {
     rating: PropTypes.oneOf([ "Unrated", "G", "PG", "PG-13", "R", "NC-17", "X" ]).isRequired,
     runtime: PropTypes.number.isRequired, // minutes
     title: PropTypes.string.isRequired,
+    userRatings: PropTypes.arrayOf(PropTypes.number),
     year: PropTypes.number.isRequired,
+
+    onRate: PropTypes.func,
   };
 
   render () {
@@ -42,13 +46,20 @@ export default class Movie extends Component {
   }
 
   renderHeader () {
-    const { genres, rating, runtime, title, year } = this.props;
+    const { genres, rating, runtime, title, userRatings, year } = this.props;
+    const { onRate } = this.props;
 
     return (
       <div data-qa="Movie-header" style={styles.header}>
         <h1>
           {title} <span style={styles.year}>({year})</span>
         </h1>
+        <div style={{marginBottom: 10}}>
+          <UserRating
+            userRatings={userRatings}
+            onRate={onRate}
+          />
+        </div>
         <div style={styles.subheader}>
           <DividedList items={[rating, formatRuntime(runtime), genres.join(", ")]} />
         </div>

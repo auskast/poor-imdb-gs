@@ -34,6 +34,7 @@ export default class DemoApp extends Component {
         <PageHeader>Component Demos</PageHeader>
 
         <Panel header="Components" bsStyle="primary">
+          <LinkContainer to="demos/user-rating"><ListGroupItem>UserRating</ListGroupItem></LinkContainer>
           <LinkContainer to="demos/movie"><ListGroupItem>Movie</ListGroupItem></LinkContainer>
           <LinkContainer to="demos/actor"><ListGroupItem>Actor</ListGroupItem></LinkContainer>
         </Panel>

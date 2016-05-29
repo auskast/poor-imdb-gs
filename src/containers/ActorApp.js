@@ -3,42 +3,36 @@ import React, { Component, PropTypes } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
+import { Alert } from "react-bootstrap";
 
 import Actor from "../components/Actor";
 
-import { getActor } from "../../test/fixtures/actors";
+import { loadActor } from "../actions/actorActions";
 
 export class ActorApp extends Component {
-  /**
-   * Called by ReactRouter before loading the container. Called prior to the
-   * React life cycle so doesn't have access to component's props or state.
-   *
-   * @param {Object} store redux store object
-   * @param {Object} renderProps render properties returned from ReactRouter
-   * @param {Object} query location data
-   * @param {Object} serverProps server specific properties
-   * @param {Boolean} serverProps.isServer method running on server or not
-   * @param {Request} [serverProps.request] express request if isServer
-   *
-   * @return {(Promise|undefined)} If this method returns a promise, the router
-   * will wait for the promise to resolve before the container is loaded.
-   */
-  static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {
+  static gsBeforeRoute ({ dispatch }, renderProps/*, query, serverProps */) {
+    return dispatch(loadActor(Number(renderProps.id)));
   }
 
   static propTypes = {
     actor: PropTypes.shape({
       name: PropTypes.string.isRequired
-    })
+    }),
+    error: PropTypes.string,
   };
 
   render () {
-    const { actor } = this.props;
+    const { actor, error } = this.props;
 
     if (!actor) {
       return (
         <article>
-          Sorry, that actor doesn't exist!
+          <Alert bsStyle="danger">
+            <strong>Error message:</strong> {error}
+          </Alert>
+          <span className="error">
+            Sorry, that actor doesn't exist!
+          </span>
         </article>
       );
     }
@@ -54,6 +48,9 @@ export class ActorApp extends Component {
 }
 
 export default connect(
-  (state, props) => ({ actor: getActor(Number(props.params.id)) }),
+  (state, props) => ({
+    actor: state.actors.actors[ props.params.id ],
+    error: state.actors.error
+  }),
   (dispatch) => bindActionCreators({ /** _INSERT_ACTION_CREATORS_ **/ }, dispatch)
 )(ActorApp);

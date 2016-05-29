@@ -11,6 +11,7 @@ import NoMatchApp from "../containers/NoMatchApp";
 
 // Demos
 import DemoApp from "../containers/DemoApp";
+import UserRatingDemo from "../components/demo/UserRatingDemo";
 import MovieDemo from "../components/demo/MovieDemo";
 import ActorDemo from "../components/demo/ActorDemo";
 
@@ -23,6 +24,7 @@ export default function routes (/*store:Object*/) {
       <Route path="actors/:id" component={ActorApp} />
 
       <Route path="demos" component={DemoApp}>
+        <Route path="user-rating" component={UserRatingDemo} />
         <Route path="movie" component={MovieDemo} />
         <Route path="actor" component={ActorDemo} />
       </Route>

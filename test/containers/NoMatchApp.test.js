@@ -1,4 +1,4 @@
-import { NoMatchApp } from "containers/NoMatchApp";
+import NoMatchApp from "containers/NoMatchApp";
 import { shallow } from "enzyme";
 
 describe("containers/NoMatchApp", () => {

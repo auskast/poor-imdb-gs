@@ -6,25 +6,12 @@ import Helmet from "react-helmet";
 
 import Home from "../components/Home";
 
-import _movies from "../../test/fixtures/movies";
-import _actors from "../../test/fixtures/actors";
+import { loadMovies } from "../actions/movieActions";
+import { loadActors } from "../actions/actorActions";
 
 export class HomeApp extends Component {
-  /**
-   * Called by ReactRouter before loading the container. Called prior to the
-   * React life cycle so doesn't have access to component's props or state.
-   *
-   * @param {Object} store redux store object
-   * @param {Object} renderProps render properties returned from ReactRouter
-   * @param {Object} query location data
-   * @param {Object} serverProps server specific properties
-   * @param {Boolean} serverProps.isServer method running on server or not
-   * @param {Request} [serverProps.request] express request if isServer
-   *
-   * @return {(Promise|undefined)} If this method returns a promise, the router
-   * will wait for the promise to resolve before the container is loaded.
-   */
-  static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {
+  static gsBeforeRoute ({ dispatch }/*, renderProps, query, serverProps */) {
+    return Promise.all([ dispatch(loadMovies()), dispatch(loadActors()) ]);
   }
 
   static propTypes = {
@@ -46,10 +33,9 @@ export class HomeApp extends Component {
 }
 
 export default connect(
-  (/* state */) => ({
-    actors: _actors,
-    movies: _movies
+  (state) => ({
+    actors: Object.values(state.actors.actors),
+    movies: Object.values(state.movies.movies)
   }),
   (dispatch) => bindActionCreators({ /** _INSERT_ACTION_CREATORS_ **/ }, dispatch)
 )(HomeApp);
-

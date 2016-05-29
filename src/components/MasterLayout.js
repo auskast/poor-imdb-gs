@@ -1,7 +1,8 @@
 /* @flow */
 import React, { Component, PropTypes } from "react";
 import Helmet from "react-helmet";
-import { Grid, Navbar } from "react-bootstrap";
+import { Grid, Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router";
 
 import config from "../config/application";
@@ -34,6 +35,11 @@ export default class MasterLayout extends Component {
               <Link to="/">Poor Man&apos;s IMDB</Link>
             </Navbar.Brand>
           </Navbar.Header>
+          <Nav>
+            <LinkContainer to="/demos">
+              <NavItem>Demos</NavItem>
+            </LinkContainer>
+          </Nav>
         </Navbar>
       </header>
     );

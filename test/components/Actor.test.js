@@ -6,7 +6,7 @@ import actors from "../fixtures/actors";
 
 describe("components/Actor", () => {
   function getSubject (props) {
-    return <Actor {...Object.assign({}, actors[0], props)} />;
+    return <Actor {...Object.assign({}, actors[ 0 ], props)} />;
   }
 
   it("renders without an issue", () => {
@@ -20,13 +20,13 @@ describe("components/Actor", () => {
       const subject = getSubject();
       const wrapper = shallow(subject);
       const rows = wrapper.find("[data-qa='Actor-filmography']").find("table").find("tr");
-      expect(rows).to.have.length(actors[0].filmography.length);
+      expect(rows).to.have.length(actors[ 0 ].filmography.length);
     });
 
     it("renders film title as link", () => {
       const subject = getSubject({
         filmography: [
-          { id: 1, title: "Test Movie", roles: ["Test Role"] }
+          { id: 1, title: "Test Movie", year: 2016, roles: [ "Test Role" ] }
         ]
       });
       const wrapper = shallow(subject);
